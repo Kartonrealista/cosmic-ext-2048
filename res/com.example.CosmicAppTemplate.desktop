@@ -1,10 +1,10 @@
 [Desktop Entry]
-Name=COSMIC App Template
-Exec=cosmic-app-template %F
+Name=2048 for COSMIC Desktop
+Exec=cosmic-ext-2048 %F
 Terminal=false
 Type=Application
 StartupNotify=true
 Icon=com.example.CosmicAppTemplate
 Categories=COSMIC;
-Keywords=Folder;Manager;
+Keywords=Game;
 MimeType=inode/directory;
