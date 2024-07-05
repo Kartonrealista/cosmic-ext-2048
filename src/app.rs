@@ -420,7 +420,6 @@ impl Application for YourApp {
             Message::StartPressed => {
                 self.game.menu.width = self.game.menu.width_inptut.parse().unwrap();
                 self.game.menu.height = self.game.menu.height_inptut.parse().unwrap();
-
                 self.game.board = Board::new(self.game.menu.width, self.game.menu.height);
                 self.game.old_board = self.game.board.clone();
                 self.game.menu.start_pressed = true;
@@ -432,10 +431,14 @@ impl Application for YourApp {
                 self.game.has_ended = false;
             }
             Message::Event(Event::Keyboard(keyboard::Event::KeyPressed { key, .. })) => {
-                self.game.old_board = self.game.board.clone();
+                let old_board = self.game.board.clone();
                 self.game
                     .board
-                    .move_tile_content(key, self.game.menu.height, self.game.menu.width)
+                    .move_tile_content(key, self.game.menu.height, self.game.menu.width);
+                if old_board != self.game.board {
+                    println!("aaaa");
+                    self.game.old_board = old_board
+                };
             }
             Message::Back => self.game.board = self.game.old_board.clone(),
             _ => {}
