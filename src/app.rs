@@ -428,6 +428,7 @@ impl Application for YourApp {
 
             Message::Reset => {
                 self.game.board = Board::new(self.game.menu.width, self.game.menu.height);
+                self.game.old_board = self.game.board.clone();
                 self.game.has_ended = false;
             }
             Message::Event(Event::Keyboard(keyboard::Event::KeyPressed { key, .. })) => {
