@@ -411,7 +411,7 @@ impl Application for YourApp {
             }
             Message::GotoMenu => {
                 self.game = Game::new();
-            }            
+            }
             Message::InputWidth(input) => self.game.menu.width_inptut = input,
             Message::InputHeight(input) => self.game.menu.height_inptut = input,
             Message::StartPressed => {
@@ -515,6 +515,31 @@ fn playfield(game: &Game) -> widget::Container<'_, Message, cosmic::Theme> {
                 ..
             } => container(centralize_tile_content(text(format!("64")).size(16)))
                 .style(theme::Container::custom(widget_colors::red2theme)),
+            Tile {
+                tilecontent: Some(128),
+                ..
+            } => container(centralize_tile_content(text(format!("128")).size(16)))
+                .style(theme::Container::custom(widget_colors::yellow1theme)),
+            Tile {
+                tilecontent: Some(256),
+                ..
+            } => container(centralize_tile_content(text(format!("256")).size(16)))
+                .style(theme::Container::custom(widget_colors::yellow2theme)),
+            Tile {
+                tilecontent: Some(512),
+                ..
+            } => container(centralize_tile_content(text(format!("512")).size(16)))
+                .style(theme::Container::custom(widget_colors::yellow3theme)),
+            Tile {
+                tilecontent: Some(1024),
+                ..
+            } => container(centralize_tile_content(text(format!("1024")).size(16)))
+                .style(theme::Container::custom(widget_colors::yellow4theme)),
+            Tile {
+                tilecontent: Some(2048),
+                ..
+            } => container(centralize_tile_content(text(format!("2048")).size(16)))
+                .style(theme::Container::custom(widget_colors::yellow5theme)),
             Tile {
                 tilecontent: Some(content),
                 ..
