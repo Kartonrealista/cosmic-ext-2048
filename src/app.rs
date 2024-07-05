@@ -411,7 +411,9 @@ impl Application for YourApp {
             }
             Message::GotoMenu => {
                 self.game = Game::new();
-            }
+            }            
+            Message::InputWidth(input) => self.game.menu.width_inptut = input,
+            Message::InputHeight(input) => self.game.menu.height_inptut = input,
             Message::StartPressed => {
                 self.game.menu.width = self.game.menu.width_inptut.parse().unwrap();
                 self.game.menu.height = self.game.menu.height_inptut.parse().unwrap();
@@ -419,8 +421,7 @@ impl Application for YourApp {
                 self.game.board = Board::new(self.game.menu.width, self.game.menu.height);
                 self.game.menu.start_pressed = true;
             }
-            Message::InputWidth(input) => self.game.menu.width_inptut = input,
-            Message::InputHeight(input) => self.game.menu.height_inptut = input,
+
             Message::Reset => {
                 self.game.board = Board::new(self.game.menu.width, self.game.menu.height);
                 self.game.has_ended = false;
@@ -482,84 +483,57 @@ impl YourApp {
 }
 
 fn playfield(game: &Game) -> widget::Container<'_, Message, cosmic::Theme> {
-    let tilebutton = |id: usize| match game.board.0[id] {
-        Tile {
-            tilecontent: Some(2),
-            ..
-        } => container(centralize_tile_content(text(format!("2")).size(16)))
-            .center_x()
-            .center_y()
-            .style(theme::Container::custom(widget_colors::gray1theme))
-            .height(50)
-            .width(50),
-        Tile {
-            tilecontent: Some(4),
-            ..
-        } => container(centralize_tile_content(text(format!("4")).size(16)))
-            .center_x()
-            .center_y()
-            .style(theme::Container::custom(widget_colors::gray2theme))
-            .height(50)
-            .width(50),
-        Tile {
-            tilecontent: Some(8),
-            ..
-        } => container(centralize_tile_content(text(format!("8")).size(16)))
-            .center_x()
-            .center_y()
-            .style(theme::Container::custom(widget_colors::orange1theme))
-            .height(50)
-            .width(50),
-        Tile {
-            tilecontent: Some(16),
-            ..
-        } => container(centralize_tile_content(text(format!("16")).size(16)))
-            .center_x()
-            .center_y()
-            .style(theme::Container::custom(widget_colors::orange2theme))
-            .height(50)
-            .width(50),
-        Tile {
-            tilecontent: Some(32),
-            ..
-        } => container(centralize_tile_content(text(format!("32")).size(16)))
-            .center_x()
-            .center_y()
-            .style(theme::Container::custom(widget_colors::red1theme))
-            .height(50)
-            .width(50),
-        Tile {
-            tilecontent: Some(64),
-            ..
-        } => container(centralize_tile_content(text(format!("64")).size(16)))
-            .center_x()
-            .center_y()
-            .style(theme::Container::custom(widget_colors::red2theme))
-            .height(50)
-            .width(50),
-        Tile {
-            tilecontent: Some(content),
-            ..
-        } => container(centralize_tile_content(text(format!("{content}")).size(16)))
-            .center_x()
-            .center_y()
-            .style(theme::Container::custom(widget_colors::blacktheme))
-            .height(50)
-            .width(50),
-        Tile {
-            tilecontent: None, ..
-        } => container("")
-            .center_x()
-            .center_y()
-            .style(theme::Container::custom(
+    let tilebutton = |id: usize| {
+        match game.board.0[id] {
+            Tile {
+                tilecontent: Some(2),
+                ..
+            } => container(centralize_tile_content(text(format!("2")).size(16)))
+                .style(theme::Container::custom(widget_colors::gray1theme)),
+            Tile {
+                tilecontent: Some(4),
+                ..
+            } => container(centralize_tile_content(text(format!("4")).size(16)))
+                .style(theme::Container::custom(widget_colors::gray2theme)),
+            Tile {
+                tilecontent: Some(8),
+                ..
+            } => container(centralize_tile_content(text(format!("8")).size(16)))
+                .style(theme::Container::custom(widget_colors::orange1theme)),
+            Tile {
+                tilecontent: Some(16),
+                ..
+            } => container(centralize_tile_content(text(format!("16")).size(16)))
+                .style(theme::Container::custom(widget_colors::orange2theme)),
+            Tile {
+                tilecontent: Some(32),
+                ..
+            } => container(centralize_tile_content(text(format!("32")).size(16)))
+                .style(theme::Container::custom(widget_colors::red1theme)),
+            Tile {
+                tilecontent: Some(64),
+                ..
+            } => container(centralize_tile_content(text(format!("64")).size(16)))
+                .style(theme::Container::custom(widget_colors::red2theme)),
+            Tile {
+                tilecontent: Some(content),
+                ..
+            } => container(centralize_tile_content(text(format!("{content}")).size(16)))
+                .style(theme::Container::custom(widget_colors::blacktheme)),
+            Tile {
+                tilecontent: None, ..
+            } => container("").style(theme::Container::custom(
                 widget_colors::secondary_with_rounder_corners,
-            ))
-            .height(50)
-            .width(50),
+            )),
+        }
+        .center_x()
+        .center_y()
+        .height(50)
+        .width(50)
     };
     let playboard = (0..game.menu.height).fold(Grid::new(), |acc, row| {
         let new_row = (0..game.menu.width).fold(Row::new(), |acc2, column| {
-            acc2.push(tilebutton(pair_to_index(row, column, game.menu.height)))
+            acc2.push(tilebutton(pair_to_index(row, column, game.menu.width)))
         });
         acc.push(new_row.spacing(2).align_items(Alignment::Center))
             .insert_row()
