@@ -1,5 +1,5 @@
-name := 'cosmic-app-template'
-export APPID := 'com.example.CosmicAppTemplate'
+name := 'cosmic-ext-2048'
+export APPID := 'io.github.Kartonrealista.' + name
 
 rootdir := ''
 prefix := '/usr'
@@ -85,6 +85,7 @@ flatpak:
 # Uninstalls installed files
 uninstall:
     rm {{bin-dst}}
+    rm {{desktop-dst}}
 
 # Vendor dependencies locally
 vendor:
