@@ -1,3 +1,5 @@
+#WIP
+
 # COSMIC Application Template
 
 A template for COSMIC applications.
