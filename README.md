@@ -1,14 +1,8 @@
-#WIP
+# WIP
 
-# COSMIC Application Template
+# 2048 for Cosmic™ Desktop
 
-A template for COSMIC applications.
-
-## Getting Started
-
-To get started, click the "Use this template" button above. This will create a new repository in your account with the contents of this template.
-
-Once you have created a new repository from this template, you can clone it to your local machine and start developing your COSMIC application.
+A 2048 game written in libcosmic and Rust.
 
 ## Development
 
