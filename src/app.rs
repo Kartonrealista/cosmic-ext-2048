@@ -18,12 +18,14 @@ const REPOSITORY: &str = "https://github.com/Kartonrealista/cosmic-ext-2024";
 struct Game {
     menu: Menu,
     board: Board,
+    old_board: Board,
     has_ended: bool,
 }
 impl Game {
     fn new() -> Game {
         let game = Game {
             board: Board::new(4, 4),
+            old_board: Board::new(4, 4),
             has_ended: false,
             menu: Menu {
                 width_inptut: String::from("4"),
@@ -272,6 +274,7 @@ pub enum Message {
     InputHeight(String),
     StartPressed,
     GotoMenu,
+    Back,
     Event(Event),
 }
 
@@ -419,6 +422,7 @@ impl Application for YourApp {
                 self.game.menu.height = self.game.menu.height_inptut.parse().unwrap();
 
                 self.game.board = Board::new(self.game.menu.width, self.game.menu.height);
+                self.game.old_board = self.game.board.clone();
                 self.game.menu.start_pressed = true;
             }
 
@@ -426,10 +430,13 @@ impl Application for YourApp {
                 self.game.board = Board::new(self.game.menu.width, self.game.menu.height);
                 self.game.has_ended = false;
             }
-            Message::Event(Event::Keyboard(keyboard::Event::KeyPressed { key, .. })) => self
-                .game
-                .board
-                .move_tile_content(key, self.game.menu.height, self.game.menu.width),
+            Message::Event(Event::Keyboard(keyboard::Event::KeyPressed { key, .. })) => {
+                self.game.old_board = self.game.board.clone();
+                self.game
+                    .board
+                    .move_tile_content(key, self.game.menu.height, self.game.menu.width)
+            }
+            Message::Back => self.game.board = self.game.old_board.clone(),
             _ => {}
         }
         Command::none()
@@ -453,8 +460,9 @@ impl YourApp {
         let cosmic_theme::Spacing { space_xxs, .. } = theme::active().cosmic().spacing;
 
         let icon = widget::svg(widget::svg::Handle::from_memory(
-            &include_bytes!("../res/icons/hicolor/128x128/apps/com.example.CosmicAppTemplate.svg")
-                [..],
+            &include_bytes!(
+                "../res/icons/hicolor/128x128/apps/io.github.Kartonrealista.cosmic-ext-2048.svg"
+            )[..],
         ));
 
         let title = widget::text::title3(fl!("app-title"));
@@ -563,16 +571,20 @@ fn playfield(game: &Game) -> widget::Container<'_, Message, cosmic::Theme> {
         acc.push(new_row.spacing(2).align_items(Alignment::Center))
             .insert_row()
     });
-    let menu_button = button("MENU").on_press(Message::GotoMenu);
-    let reset_button = button("RESET")
+    let menu_button = button("Menu")
+        .on_press(Message::GotoMenu)
+        .style(theme::Button::Suggested);
+    let reset_button = button("Reset")
         .on_press(Message::Reset)
         .style(theme::Button::Destructive);
+    let back_button = button("Back").on_press(Message::Back);
     container(
         widget::column()
             .push(
                 widget::row()
                     .push(menu_button)
                     .push(reset_button)
+                    .push(back_button)
                     .padding(20)
                     .spacing(20),
             )
@@ -603,6 +615,7 @@ fn menu(game: &Game) -> widget::Container<'_, Message, cosmic::Theme> {
     let height_box = text_input("", &game.menu.height_inptut).on_input(Message::InputHeight);
     let start_game_button = button(centralize_tile_content(text("START")))
         .on_press(Message::StartPressed)
+        .style(theme::Button::Suggested)
         .width(96)
         .height(55);
     container(
@@ -616,10 +629,11 @@ fn menu(game: &Game) -> widget::Container<'_, Message, cosmic::Theme> {
             .push(
                 widget::row()
                     .push(text("Height: "))
-                    .push(height_box.width(40)),
+                    .push(height_box.width(40))
+                    .align_items(Alignment::Center),
             )
             .push(start_game_button)
-            .align_items(Alignment::Center)
+            .align_items(Alignment::End)
             .spacing(20),
     )
 }
