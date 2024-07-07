@@ -23,7 +23,8 @@ struct Game {
 }
 impl Game {
     fn new() -> Game {
-        let game = Game {
+        
+        Game {
             board: Board::new(4, 4),
             old_board: Board::new(4, 4),
             has_ended: false,
@@ -34,8 +35,7 @@ impl Game {
                 height: 4,
                 start_pressed: false,
             },
-        };
-        game
+        }
     }
 }
 fn pair_to_index(i: usize, j: usize, width: usize) -> usize {
@@ -436,7 +436,6 @@ impl Application for YourApp {
                     .board
                     .move_tile_content(key, self.game.menu.height, self.game.menu.width);
                 if old_board != self.game.board {
-                    println!("aaaa");
                     self.game.old_board = old_board
                 };
             }
@@ -500,57 +499,57 @@ fn playfield(game: &Game) -> widget::Container<'_, Message, cosmic::Theme> {
             Tile {
                 tilecontent: Some(2),
                 ..
-            } => container(centralize_tile_content(text(format!("2")).size(16)))
+            } => container(centralize_tile_content(text("2".to_string()).size(16)))
                 .style(theme::Container::custom(widget_colors::gray1theme)),
             Tile {
                 tilecontent: Some(4),
                 ..
-            } => container(centralize_tile_content(text(format!("4")).size(16)))
+            } => container(centralize_tile_content(text("4".to_string()).size(16)))
                 .style(theme::Container::custom(widget_colors::gray2theme)),
             Tile {
                 tilecontent: Some(8),
                 ..
-            } => container(centralize_tile_content(text(format!("8")).size(16)))
+            } => container(centralize_tile_content(text("8".to_string()).size(16)))
                 .style(theme::Container::custom(widget_colors::orange1theme)),
             Tile {
                 tilecontent: Some(16),
                 ..
-            } => container(centralize_tile_content(text(format!("16")).size(16)))
+            } => container(centralize_tile_content(text("16".to_string()).size(16)))
                 .style(theme::Container::custom(widget_colors::orange2theme)),
             Tile {
                 tilecontent: Some(32),
                 ..
-            } => container(centralize_tile_content(text(format!("32")).size(16)))
+            } => container(centralize_tile_content(text("32".to_string()).size(16)))
                 .style(theme::Container::custom(widget_colors::red1theme)),
             Tile {
                 tilecontent: Some(64),
                 ..
-            } => container(centralize_tile_content(text(format!("64")).size(16)))
+            } => container(centralize_tile_content(text("64".to_string()).size(16)))
                 .style(theme::Container::custom(widget_colors::red2theme)),
             Tile {
                 tilecontent: Some(128),
                 ..
-            } => container(centralize_tile_content(text(format!("128")).size(16)))
+            } => container(centralize_tile_content(text("128".to_string()).size(16)))
                 .style(theme::Container::custom(widget_colors::yellow1theme)),
             Tile {
                 tilecontent: Some(256),
                 ..
-            } => container(centralize_tile_content(text(format!("256")).size(16)))
+            } => container(centralize_tile_content(text("256".to_string()).size(16)))
                 .style(theme::Container::custom(widget_colors::yellow2theme)),
             Tile {
                 tilecontent: Some(512),
                 ..
-            } => container(centralize_tile_content(text(format!("512")).size(16)))
+            } => container(centralize_tile_content(text("512".to_string()).size(16)))
                 .style(theme::Container::custom(widget_colors::yellow3theme)),
             Tile {
                 tilecontent: Some(1024),
                 ..
-            } => container(centralize_tile_content(text(format!("1024")).size(16)))
+            } => container(centralize_tile_content(text("1024".to_string()).size(16)))
                 .style(theme::Container::custom(widget_colors::yellow4theme)),
             Tile {
                 tilecontent: Some(2048),
                 ..
-            } => container(centralize_tile_content(text(format!("2048")).size(16)))
+            } => container(centralize_tile_content(text("2048".to_string()).size(16)))
                 .style(theme::Container::custom(widget_colors::yellow5theme)),
             Tile {
                 tilecontent: Some(content),

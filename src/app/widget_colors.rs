@@ -90,7 +90,7 @@ pub fn blacktheme(theme: &Theme) -> widget::container::Appearance {
 
 pub fn secondary_with_rounder_corners(theme: &Theme) -> widget::container::Appearance {
     let cosmic = theme.cosmic();
-    let mut appearance = theme::Container::secondary(&cosmic);
+    let mut appearance = theme::Container::secondary(cosmic);
     appearance.border = Border {
         color: Color::TRANSPARENT,
         width: 1.0,
