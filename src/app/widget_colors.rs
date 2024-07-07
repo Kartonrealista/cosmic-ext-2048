@@ -1,4 +1,4 @@
-use crate::app::*;
+use crate::app::{Theme, theme, widget};
 use cosmic::{
     iced::{Border, Color},
     iced_core::Shadow,

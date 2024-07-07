@@ -23,7 +23,6 @@ struct Game {
 }
 impl Game {
     fn new() -> Game {
-        
         Game {
             board: Board::new(4, 4),
             old_board: Board::new(4, 4),
@@ -64,7 +63,7 @@ impl Board {
         let mut ids: Vec<usize> = (0..(width * height)).collect();
         rand::seq::SliceRandom::shuffle(ids.as_mut_slice(), &mut thread_rng());
         ids.iter().take(2).for_each(|&id| {
-            out[id].tilecontent = Some(*Self::TWO_OR_FOUR.choose(&mut thread_rng()).unwrap())
+            out[id].tilecontent = Some(*Self::TWO_OR_FOUR.choose(&mut thread_rng()).unwrap());
         });
         Board(out)
     }
@@ -88,7 +87,7 @@ impl Board {
                 self.collapse_right(height, width);
                 (0..height).for_each(|h| {
                     (0..width).rev().for_each(|w| {
-                        self.merge_neighbouring(h, w, &mut previous, width, height, &direction)
+                        self.merge_neighbouring(h, w, &mut previous, width, height, &direction);
                     });
                 });
                 self.collapse_right(height, width);
@@ -97,7 +96,7 @@ impl Board {
                 self.collapse_up(height, width);
                 (0..width).for_each(|w| {
                     (0..height).for_each(|h| {
-                        self.merge_neighbouring(h, w, &mut previous, width, height, &direction)
+                        self.merge_neighbouring(h, w, &mut previous, width, height, &direction);
                     });
                 });
                 self.collapse_up(height, width);
@@ -106,7 +105,7 @@ impl Board {
                 self.collapse_down(height, width);
                 (0..width).for_each(|w| {
                     (0..height).rev().for_each(|h| {
-                        self.merge_neighbouring(h, w, &mut previous, width, height, &direction)
+                        self.merge_neighbouring(h, w, &mut previous, width, height, &direction);
                     });
                 });
                 self.collapse_down(height, width);
@@ -122,7 +121,7 @@ impl Board {
                 .map(|&tile| tile.id);
             let chosen_id = empty_ids.choose(&mut thread_rng()).unwrap();
             self.0[chosen_id].tilecontent =
-                Some(*Self::TWO_OR_FOUR.choose(&mut thread_rng()).unwrap())
+                Some(*Self::TWO_OR_FOUR.choose(&mut thread_rng()).unwrap());
         }
     }
     fn collapse_left(&mut self, height: usize, width: usize) {
@@ -142,7 +141,7 @@ impl Board {
                 });
             (collapsed.count()..width).for_each(|w| {
                 self.0[pair_to_index(h, w, width)].tilecontent = None;
-            })
+            });
         });
     }
     fn collapse_right(&mut self, height: usize, width: usize) {
@@ -164,7 +163,7 @@ impl Board {
                 });
             (collapsed.count()..width).for_each(|w| {
                 self.0[pair_to_index(h, width - w - 1, width)].tilecontent = None;
-            })
+            });
         });
     }
     fn collapse_up(&mut self, height: usize, width: usize) {
@@ -180,7 +179,7 @@ impl Board {
             });
             (collapsed.count()..height).for_each(|h| {
                 self.0[pair_to_index(h, w, width)].tilecontent = None;
-            })
+            });
         });
     }
     fn collapse_down(&mut self, height: usize, width: usize) {
@@ -198,7 +197,7 @@ impl Board {
             });
             (collapsed.count()..height).for_each(|h| {
                 self.0[pair_to_index(height - h - 1, w, width)].tilecontent = None;
-            })
+            });
         });
     }
     fn merge_neighbouring(
@@ -235,7 +234,7 @@ impl Board {
                     if let Some(content) = previous.tilecontent {
                         self.0[previous.id].tilecontent = Some(content * 2);
                         self.0[current.id].tilecontent = None;
-                        current.tilecontent = None
+                        current.tilecontent = None;
                     }
                 }
                 *previous = current;
@@ -436,7 +435,7 @@ impl Application for YourApp {
                     .board
                     .move_tile_content(key, self.game.menu.height, self.game.menu.width);
                 if old_board != self.game.board {
-                    self.game.old_board = old_board
+                    self.game.old_board = old_board;
                 };
             }
             Message::Back => self.game.board = self.game.old_board.clone(),
