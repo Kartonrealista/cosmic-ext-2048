@@ -67,7 +67,7 @@ impl Board {
         });
         Board(out)
     }
-    fn move_tile_content(&mut self, direction: keyboard::Key, height: usize, width: usize) {
+    fn move_tile_content(&mut self, direction: &keyboard::Key, height: usize, width: usize) {
         let old_board = self.clone();
         let mut previous = Tile {
             tilecontent: None,
@@ -251,7 +251,7 @@ struct Tile {
 
 /// This is the struct that represents your application.
 /// It is used to define the data that will be used by your application.
-pub struct YourApp {
+pub struct App2048 {
     /// Application state which is managed by the COSMIC runtime.
     core: Core,
     /// Display a context drawer with the designated page if defined.
@@ -315,7 +315,7 @@ impl menu::action::MenuAction for MenuAction {
 /// - `Flags` is the data that your application needs to use before it starts.
 /// - `Message` is the enum that contains all the possible variants that your application will need to transmit messages.
 /// - `APP_ID` is the unique identifier of your application.
-impl Application for YourApp {
+impl Application for App2048 {
     type Executor = cosmic::executor::Default;
 
     type Flags = ();
@@ -340,7 +340,7 @@ impl Application for YourApp {
     /// - `flags` is used to pass in any data that your application needs to use before it starts.
     /// - `Command` type is used to send messages to your application. `Command::none()` can be used to send no messages to your application.
     fn init(core: Core, _flags: Self::Flags) -> (Self, Command<Self::Message>) {
-        let mut app = YourApp {
+        let mut app = App2048 {
             core,
             context_page: ContextPage::default(),
             key_binds: HashMap::new(),
@@ -372,9 +372,10 @@ impl Application for YourApp {
     ///
     /// To get a better sense of which widgets are available, check out the `widget` module.
     fn view(&self) -> Element<Message> {
-        match self.game.menu.start_pressed {
-            false => menu(&self.game),
-            true => playfield(&self.game),
+        if self.game.menu.start_pressed {
+            playfield(&self.game)
+        } else {
+            menu(&self.game)
         }
         .height(Length::Fill)
         .width(Length::Fill)
@@ -431,15 +432,17 @@ impl Application for YourApp {
             }
             Message::Event(Event::Keyboard(keyboard::Event::KeyPressed { key, .. })) => {
                 let old_board = self.game.board.clone();
-                self.game
-                    .board
-                    .move_tile_content(key, self.game.menu.height, self.game.menu.width);
+                self.game.board.move_tile_content(
+                    &key,
+                    self.game.menu.height,
+                    self.game.menu.width,
+                );
                 if old_board != self.game.board {
                     self.game.old_board = old_board;
                 };
             }
             Message::Back => self.game.board = self.game.old_board.clone(),
-            _ => {}
+            Message::Event(_) => {}
         }
         Command::none()
     }
@@ -456,7 +459,7 @@ impl Application for YourApp {
     }
 }
 
-impl YourApp {
+impl App2048 {
     /// The about page for this app.
     pub fn about(&self) -> Element<Message> {
         let cosmic_theme::Spacing { space_xxs, .. } = theme::active().cosmic().spacing;
