@@ -39,7 +39,7 @@ impl Game {
     }
 }
 fn pair_to_index(i: usize, j: usize, width: usize) -> usize {
-    j + i * width
+    i * width + j
 }
 
 struct Menu {
