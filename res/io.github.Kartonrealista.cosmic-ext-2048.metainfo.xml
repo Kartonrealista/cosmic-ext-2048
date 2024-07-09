@@ -14,7 +14,7 @@
     <p>A game of 2048 developed with libcosmic and Rust</p>
   </description>
   <launchable type="desktop-id">io.github.Kartonrealista.cosmic-ext-2048.desktop</launchable>
-  <icon type="remote" height="256" width="256">https://raw.githubusercontent.com/edfloreshz/cosmic-app-template/master/res/icons/hicolor/256x256/apps/com.example.CosmicAppTemplate.svg</icon>
+  <icon type="remote" height="256" width="256">https://raw.githubusercontent.com/Kartonrealista/cosmic-ext-2048/main/res/icons/hicolor/128x128/apps/io.github.Kartonrealista.cosmic-ext-2048.svg</icon>
   <screenshots>
   </screenshots>
   <provides>
