@@ -86,6 +86,10 @@ flatpak:
 uninstall:
     rm {{bin-dst}}
     rm {{desktop-dst}}
+    rm {{metainfo-dst}}
+    for size in `ls {{icons-src}}`; do \
+        rm "{{icons-dst}}/$size/apps/{{APPID}}.svg"; \
+    done
 
 # Vendor dependencies locally
 vendor:
