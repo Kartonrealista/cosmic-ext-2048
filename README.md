@@ -17,9 +17,7 @@ To install your COSMIC application, you will need [just](https://github.com/case
 
 ```sh
 sudo apt install just
-```![screenshot-2024-07-09-17-44-41](https://github.com/Kartonrealista/cosmic-ext-2048/assets/63356574/950f7622-b710-45e9-a5cc-0c879d4d0ad2)
-
-
+```
 After you install it, you can run the following commands to build and install your application:
 
 ```sh
