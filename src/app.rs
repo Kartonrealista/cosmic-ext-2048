@@ -466,7 +466,7 @@ impl App2048 {
 
         let icon = widget::svg(widget::svg::Handle::from_memory(
             &include_bytes!(
-                "../res/icons/hicolor/128x128/apps/io.github.Kartonrealista.cosmic-ext-2048.svg"
+                "../res/icons/hicolor/256x256/apps/io.github.Kartonrealista.cosmic-ext-2048.svg"
             )[..],
         ));
 
