@@ -23,11 +23,11 @@
      inkscape:pagecheckerboard="0"
      inkscape:deskcolor="#d1d1d1"
      inkscape:document-units="mm"
-     inkscape:zoom="0.72567726"
-     inkscape:cx="108.86382"
-     inkscape:cy="244.59909"
-     inkscape:window-width="1356"
-     inkscape:window-height="1027"
+     inkscape:zoom="1.0262626"
+     inkscape:cx="203.65158"
+     inkscape:cy="64.798229"
+     inkscape:window-width="1868"
+     inkscape:window-height="1003"
      inkscape:window-x="20"
      inkscape:window-y="20"
      inkscape:window-maximized="0"
@@ -46,21 +46,17 @@
      inkscape:groupmode="layer"
      id="layer1"
      transform="translate(-33.866668,-33.866668)">
-    <g
-       id="g1"
-       transform="matrix(0.49999999,0,0,0.49999999,33.866668,33.866668)">
-      <path
-         style="fill:#edc22d;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.259018;stroke-opacity:1"
-         d="M 0,67.733332 V 0 h 67.73333 67.73334 V 67.733332 135.46667 H 67.73333 0 Z"
-         id="path16" />
-      <text
-         xml:space="preserve"
-         transform="matrix(0.26458333,0,0,0.26458333,3.2261605,41.279134)"
-         id="text16"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:192px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;white-space:pre;shape-inside:url(#rect16);fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-opacity:1"><tspan
-           x="-0.97460938"
-           y="169.875"
-           id="tspan1">2048</tspan></text>
-    </g>
+    <path
+       style="fill:#edc22d;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.129509;stroke-opacity:1"
+       d="M 33.866668,67.733333 V 33.866668 H 67.733332 101.6 V 67.733333 101.6 H 67.733332 33.866668 Z"
+       id="path16" />
+    <text
+       xml:space="preserve"
+       transform="matrix(0.13229166,0,0,0.13229166,39.617471,53.352702)"
+       id="text16"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:192px;font-family:'Fira Sans';-inkscape-font-specification:'Fira Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;white-space:pre;shape-inside:url(#rect16);fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-opacity:1"><tspan
+         x="-0.97460938"
+         y="173.6"
+         id="tspan2">2048</tspan></text>
   </g>
 </svg>
