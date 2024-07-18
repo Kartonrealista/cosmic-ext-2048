@@ -25,9 +25,9 @@
      inkscape:document-units="mm"
      inkscape:zoom="1.0262626"
      inkscape:cx="203.65158"
-     inkscape:cy="64.798229"
-     inkscape:window-width="1868"
-     inkscape:window-height="1003"
+     inkscape:cy="64.79823"
+     inkscape:window-width="1228"
+     inkscape:window-height="907"
      inkscape:window-x="20"
      inkscape:window-y="20"
      inkscape:window-maximized="0"
@@ -47,16 +47,16 @@
      id="layer1"
      transform="translate(-33.866668,-33.866668)">
     <path
-       style="fill:#edc22d;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.129509;stroke-opacity:1"
-       d="M 33.866668,67.733333 V 33.866668 H 67.733332 101.6 V 67.733333 101.6 H 67.733332 33.866668 Z"
+       style="fill:#edc22d;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.111297;stroke-opacity:1"
+       d="M 38.629167,67.733333 V 38.629167 H 67.733332 96.837501 V 67.733333 96.837501 H 67.733332 38.629167 Z"
        id="path16" />
     <text
        xml:space="preserve"
-       transform="matrix(0.13229166,0,0,0.13229166,39.617471,53.352702)"
+       transform="matrix(0.11368815,0,0,0.11368815,43.571264,55.374978)"
        id="text16"
        style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:192px;font-family:'Fira Sans';-inkscape-font-specification:'Fira Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;white-space:pre;shape-inside:url(#rect16);fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-opacity:1"><tspan
          x="-0.97460938"
          y="173.6"
-         id="tspan2">2048</tspan></text>
+         id="tspan1">2048</tspan></text>
   </g>
 </svg>
