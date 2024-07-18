@@ -322,7 +322,7 @@ impl Application for App2048 {
 
     type Message = Message;
 
-    const APP_ID: &'static str = "com.example.CosmicAppTemplate";
+    const APP_ID: &'static str = "io.Kartonrealista.cosmic-ext-2048";
 
     fn core(&self) -> &Core {
         &self.core
