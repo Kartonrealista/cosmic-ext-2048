@@ -19,14 +19,12 @@ struct Game {
     menu: Menu,
     board: Board,
     old_board: Board,
-    has_ended: bool,
 }
 impl Game {
     fn new() -> Game {
         Game {
             board: Board::new(4, 4),
             old_board: Board::new(4, 4),
-            has_ended: false,
             menu: Menu {
                 width_inptut: String::from("4"),
                 height_inptut: String::from("4"),
@@ -428,7 +426,6 @@ impl Application for App2048 {
             Message::Reset => {
                 self.game.board = Board::new(self.game.menu.width, self.game.menu.height);
                 self.game.old_board = self.game.board.clone();
-                self.game.has_ended = false;
             }
             Message::Event(Event::Keyboard(keyboard::Event::KeyPressed { key, .. })) => {
                 let old_board = self.game.board.clone();
