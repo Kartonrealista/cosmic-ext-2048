@@ -602,8 +602,8 @@ fn playfield(game: &Game) -> widget::Container<'_, Message, cosmic::Theme> {
             ),
     )
     .padding(20)
-    .align_x(Horizontal::Center)
-    .align_y(Vertical::Center)
+    .center_x()
+    .center_y()
 }
 
 fn centralize_tile_content(tile_content: Text<Theme, Renderer>) -> Text<Theme, Renderer> {
