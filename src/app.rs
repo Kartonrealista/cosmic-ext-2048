@@ -493,7 +493,7 @@ impl App2048 {
 }
 
 fn playfield(game: &Game) -> widget::Container<'_, Message, cosmic::Theme> {
-    let tilebutton = |id: usize| {
+    let tile_widget = |id: usize| {
         match game.board.0[id] {
             Tile {
                 tilecontent: Some(2),
@@ -568,7 +568,7 @@ fn playfield(game: &Game) -> widget::Container<'_, Message, cosmic::Theme> {
     };
     let playboard = (0..game.menu.height).fold(Grid::new(), |acc, row| {
         let new_row = (0..game.menu.width).fold(Row::new(), |acc2, column| {
-            acc2.push(tilebutton(pair_to_index(row, column, game.menu.width)))
+            acc2.push(tile_widget(pair_to_index(row, column, game.menu.width)))
         });
         acc.push(new_row.spacing(2).align_items(Alignment::Center))
             .insert_row()
