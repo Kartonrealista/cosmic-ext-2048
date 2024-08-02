@@ -1,6 +1,6 @@
 # WIP
 
-# 2048 for Cosmic™ Desktop
+# 2048 for COSMIC™ Desktop
 
 ![image](https://github.com/Kartonrealista/cosmic-ext-2048/assets/63356574/c4a236a7-1765-4eb9-9197-a521325731dd)
 
