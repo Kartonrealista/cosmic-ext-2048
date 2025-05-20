@@ -1,4 +1,4 @@
-app-title = 2048 voor COSMIC
+app-title = 2048 voor COSMIC™ desktop
 about = Over
 view = Beeld
-welcome = ✨ Welkom bij COSMIC! ✨
+welcome = Dank je dat 2048 gebruikt met je COSMIC™ desktop
